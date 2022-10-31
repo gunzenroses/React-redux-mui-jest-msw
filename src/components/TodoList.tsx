@@ -16,6 +16,7 @@ const TodoList: FC<Props> = ({
   onCompletedChange,
   onDelete,
 }) => {
+
   return (
     <Box display='flex' flexDirection='column' gap='20px'>
       {todoList.map((item) => {

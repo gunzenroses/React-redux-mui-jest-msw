@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import { Footer, Header, Panel, TodoList } from './components'
+import { Footer, Header, Panel, TodoList } from '../components'
 import './App.css';
 
-import data from './components/data.json';
+import data from './data.json';
 
 function App() {
   const [todoList, setTodoList] = useState(data.todoList);
@@ -53,10 +53,26 @@ function App() {
     );
   }
 
+  const [modList, setModList] = useState(todoList);
+
   const onModeChangeHandler = (mode: ModeType) => {
     setMode(mode);
   };
 
+  useEffect(() => {
+    const modifiedList = todoList.filter((todo) => {
+      switch (mode) {
+        case 'All':
+          return todo;
+        case 'Active':
+          return !todo.checked;
+        case 'Completed':
+          return todo.checked;
+      }
+    });
+    setModList(modifiedList);
+  }, [todoList, mode]);
+  
   const onDeleteCompletedHandler = () => {
     setTodoList(
       todoList.filter(todo => !todo.checked)
@@ -66,15 +82,15 @@ function App() {
   return (
     <div className='App'>
       <Header />
-      <Panel onAdd={onAddItem}/>
-      <TodoList 
-        todoList={todoList} 
-        onDelete={onDeleteItem} 
+      <Panel onAdd={onAddItem} />
+      <TodoList
+        todoList={modList}
+        onDelete={onDeleteItem}
         onTextChange={onTextChange}
         onCompletedChange={onCompleteChange}
       />
       <Footer
-        listLength={todoList.length} 
+        listLength={modList.length}
         currentMode={mode}
         onModeChange={onModeChangeHandler}
         onDeleteCompleted={onDeleteCompletedHandler}
