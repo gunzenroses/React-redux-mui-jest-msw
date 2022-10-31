@@ -1,9 +1,17 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+
+import { renderWithProviders } from '../../test-utils/testWrapper';
+import { preloadedState } from '../../test-utils/preloadedState';
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('App should match snapshot', () => {
+  const { container } = renderWithProviders(
+    <App />,
+    { preloadedState }
+  );
+
+  expect(container).toMatchSnapshot();
 });
+
+
