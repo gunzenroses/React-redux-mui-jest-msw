@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Box, breadcrumbsClasses } from '@mui/material';
+import { Box } from '@mui/material';
 
 import { TodoItem } from './TodoItem';
 

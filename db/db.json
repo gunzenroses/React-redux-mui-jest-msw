@@ -6,14 +6,9 @@
       "text": "test code"
     },
     {
-      "id": 3,
+      "id": 5,
       "checked": false,
-      "text": "write code"
-    },
-    {
-      "id": 4,
-      "checked": false,
-      "text": "add redux"
+      "text": "test code"
     }
   ]
 }

@@ -60,18 +60,31 @@ function App() {
     setMode(mode);
   };
 
+  const [modList, setModList] = useState(data);
+
+  useEffect(() => {
+    const modifiedList = data.filter(todo => {
+      switch(mode) {
+        case 'All': return todo;
+        case 'Active': return !todo.checked;
+        case 'Completed': return todo.checked;
+      }
+    });
+    setModList(modifiedList);
+  }, [mode, data]);
+
   return (
     <div className='App'>
       <Header />
       <Panel onAdd={onAddItem} />
       <TodoList
-        todoList={data}
+        todoList={modList}
         currentMode={mode}
         onDelete={onDeleteItem}
         onChange={onChangeItem}
       />
       <Footer
-        listLength={data.length}
+        listLength={modList.length}
         currentMode={mode}
         onModeChange={onModeChangeHandler}
         onDeleteCompleted={onDeleteCompletedHandler}
