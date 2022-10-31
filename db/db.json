@@ -1,0 +1,19 @@
+{
+  "todoList": [
+    {
+      "id": 2,
+      "checked": false,
+      "text": "test code"
+    },
+    {
+      "id": 3,
+      "checked": false,
+      "text": "write code"
+    },
+    {
+      "id": 4,
+      "checked": false,
+      "text": "add redux"
+    }
+  ]
+}

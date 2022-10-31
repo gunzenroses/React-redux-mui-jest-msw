@@ -7,8 +7,7 @@ type Props = {
   id: number,
   checked: boolean,
   text: string,
-  onTextChange: (data: Omit<TodoItemType, 'checked'>) => void;
-  onCompletedChange: (data: Omit<TodoItemType, 'text'>) => void;
+  onChange: (data: TodoItemType) => void;
   onDelete: (id: TodoItemType['id']) => void;
 }
 
@@ -16,8 +15,7 @@ const TodoItem: FC<Props> = ({
   id,
   checked,
   text,
-  onTextChange,
-  onCompletedChange,
+  onChange,
   onDelete
 }) => {
   const [ifReadOnly, setIfReadOnly] = useState(true);
@@ -30,17 +28,19 @@ const TodoItem: FC<Props> = ({
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { value } = e.target;
-    onTextChange({
-      id, 
-      text: value
+    onChange({
+      id,
+      checked,
+      text: value,
     });
   };
 
   const onCompleteChange = () => {
     if (!ifReadOnly) return;
-    onCompletedChange({
-      id, 
-      checked: !checked
+    onChange({
+      id,
+      checked: !checked,
+      text,
     });
   }
 
