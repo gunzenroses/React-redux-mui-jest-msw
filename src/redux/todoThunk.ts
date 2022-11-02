@@ -6,7 +6,7 @@ const getTodos = createAsyncThunk(
   'todoSlice/getTodos',
   async () => {
     try {
-      const list = new TodoData().getData();
+      const list = await new TodoData().getData();
       return list;
     } catch (error) {
       return Promise.reject('You have planned nothing');

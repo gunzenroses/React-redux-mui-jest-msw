@@ -1,51 +1,61 @@
 import { FC, useState, ChangeEvent } from 'react';
-
-import { IconButton, Input, OutlinedInput, Paper } from '@mui/material';
+import { IconButton, Paper, TextField } from '@mui/material';
 import { RadioButtonUnchecked, TaskAlt, Delete, ModeEdit } from '@mui/icons-material';
+
+import { useMyDispatch } from '../redux/hooks';
+import { changeTodo, deleteTodo } from '../redux/todoThunk';
 
 type Props = {
   id: number,
   checked: boolean,
-  text: string,
-  onChange: (data: TodoItemType) => void;
-  onDelete: (id: TodoItemType['id']) => void;
+  text: string
 }
 
 const TodoItem: FC<Props> = ({
   id,
   checked,
-  text,
-  onChange,
-  onDelete
+  text
 }) => {
+  const dispatch = useMyDispatch();
+  
   const [ifReadOnly, setIfReadOnly] = useState(true);
 
+  const [inputText, setInputText] = useState(text);
+
   const onEditHandler = () => {
-    setIfReadOnly((prevValue) => !prevValue);
+    if (ifReadOnly) {
+      setIfReadOnly(false);
+    } else {
+      setIfReadOnly(true);
+      const newData = {
+        id,
+        checked,
+        text: inputText,
+      };
+      dispatch(changeTodo(newData));
+    }
   }
 
-  const onDescriptionChange = (
+  const onChangeHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    if (ifReadOnly) return;
     const { value } = e.target;
-    onChange({
-      id,
-      checked,
-      text: value,
-    });
+    setInputText(value);
   };
 
-  const onCompleteChange = () => {
+  const onCompleteHandler = () => {
     if (!ifReadOnly) return;
-    onChange({
+    const newData = {
       id,
       checked: !checked,
       text,
-    });
+    }
+    dispatch(changeTodo(newData));
   }
 
   const onDeleteHandler = () => {
-    onDelete(id);
+    dispatch(deleteTodo([id]))
   }
 
   return (
@@ -62,7 +72,7 @@ const TodoItem: FC<Props> = ({
       {checked ? (
         <TaskAlt
           fontSize='large'
-          onClick={onCompleteChange}
+          onClick={onCompleteHandler}
           sx={{
             color: '#00000042',
           }}
@@ -71,39 +81,28 @@ const TodoItem: FC<Props> = ({
         <RadioButtonUnchecked
           fontSize='large'
           color={ifReadOnly ? 'error' : 'disabled'}
-          onClick={onCompleteChange}
+          onClick={onCompleteHandler}
         />
       )}
-      {ifReadOnly ? (
-        <Input
-          multiline
-          readOnly={ifReadOnly}
-          value={text}
-          onClick={onCompleteChange}
-          sx={{
-            width: '75%',
-            textDecoration: checked ? 'line-through' : 'none',
-            color: checked ? '#00000042' : 'currentColor',
-            '&:before': {
-              borderBottom: 'none',
-            },
-            '&:after': {
-              borderBottom: 'none',
-            },
-          }}
-        />
-      ) : (
-        <OutlinedInput
-          multiline
-          readOnly={false}
-          value={text}
-          onChange={onDescriptionChange}
-          sx={{
-            width: 'calc(75% + 60px)',
-          }}
-        />
-      )}
+      <TextField
+        variant={ifReadOnly ? 'standard' : 'outlined'}
+        aria-label='todoItem'
+        value={inputText}
+        onChange={onChangeHandler}
+        sx={{
+          width: '75%',
+          textDecoration: checked ? 'line-through' : 'none',
+          color: checked ? '#00000042' : 'currentColor',
+          '&:before': {
+            borderBottom: 'none',
+          },
+          '&:after': {
+            borderBottom: 'none',
+          },
+        }}
+      />
       <IconButton
+        aria-label='changeBtn'
         color={ifReadOnly ? 'default' : 'primary'}
         disabled={checked}
         onClick={onEditHandler}
@@ -115,6 +114,7 @@ const TodoItem: FC<Props> = ({
       </IconButton>
       {ifReadOnly && (
         <IconButton
+          aria-label='deleteBtn'
           color='default'
           sx={{
             width: '60px',

@@ -2,12 +2,27 @@ import { ChangeEvent, useState, FC } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import { Add } from '@mui/icons-material';
 
+import { useMyDispatch } from '../redux/hooks';
+import { addTodo } from '../redux/todoThunk';
+
 type Props = {
-  onAdd: (text: string) => void;
+  lastDataId: number;
 }
 
-const Panel: FC<Props> = ({ onAdd }) => {
-  const [value, setValue ] = useState('');
+const Panel: FC<Props> = ({ lastDataId }) => {
+  const dispatch = useMyDispatch();
+
+  const [value, setValue] = useState('');
+
+  const onAddHandler = () => {
+    const newItem = {
+      id: lastDataId,
+      checked: false,
+      text: value,
+    };
+    dispatch(addTodo(newItem));
+    setValue('');
+  };
 
   const buttonDisability = value.length < 1 ? true : false;
 
@@ -17,11 +32,6 @@ const Panel: FC<Props> = ({ onAdd }) => {
     const inputValue = e.target.value;
     setValue(inputValue);
   };
-
-  const onAddHandler = () => {
-    onAdd(value);
-    setValue('');
-  }
 
   return (
     <Box
@@ -37,7 +47,7 @@ const Panel: FC<Props> = ({ onAdd }) => {
     >
       <TextField
         value={value}
-        label="What's need to be done?"
+        placeholder="What's need to be done?"
         variant='outlined'
         onChange={onChangeHandler}
         sx={{
@@ -47,6 +57,7 @@ const Panel: FC<Props> = ({ onAdd }) => {
       <Button
         disabled={buttonDisability}
         variant='contained'
+        aria-label='addButton'
         color='primary'
         size='medium'
         sx={{
@@ -59,6 +70,6 @@ const Panel: FC<Props> = ({ onAdd }) => {
       </Button>
     </Box>
   );
-}
+};
 
 export { Panel };

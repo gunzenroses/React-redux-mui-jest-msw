@@ -1,10 +1,10 @@
-import React, { PropsWithChildren, ReactElement } from "react";
+import { PropsWithChildren, ReactElement } from "react";
 import { Provider } from "react-redux";
 import { configureStore, PreloadedState } from "@reduxjs/toolkit"
 import { render, RenderOptions } from "@testing-library/react";
 
-import todoSlice from "../src/redux/todoSlice";
-import { MyState, MyStoreType } from '../src/redux/types';
+import todoSlice from "../redux/todoSlice";
+import { MyState, MyStoreType } from '../redux/types';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<MyState>,
@@ -21,16 +21,13 @@ const setupStore = (preloadedState?: PreloadedState<MyState>) => {
 }
 
 export const renderWithProviders = (
-  ui: ReactElement, 
-  {
-    preloadedState = {todoList: []},
-    store = setupStore(preloadedState),
-    ...renderOptions
-  }: ExtendedRenderOptions = {}
+  ui: ReactElement,
+  renderOptions?: ExtendedRenderOptions
 ) => {
+  const store = setupStore({todoList: []});
   function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
-    return <Provider store={store}>{children}</Provider>
+    return <Provider store={store}>{children}</Provider>;
   }
 
-  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
-}
+  return render(ui, { wrapper: Wrapper, ...renderOptions });
+};

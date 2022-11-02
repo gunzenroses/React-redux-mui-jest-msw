@@ -6,15 +6,11 @@ import { TodoItem } from './TodoItem';
 type Props = {
   todoList: TodoItemType[];
   currentMode: ModeType;
-  onChange: (data: TodoItemType) => void;
-  onDelete: (id: TodoItemType['id']) => void;
 };
 
 const TodoList: FC<Props> = ({
   todoList,
-  currentMode,
-  onChange,
-  onDelete,
+  currentMode
 }) => {
   const modifiedList = todoList.filter(todo => {
     switch (currentMode) {
@@ -33,8 +29,6 @@ const TodoList: FC<Props> = ({
             id={item.id}
             text={item.text}
             checked={item.checked}
-            onDelete={onDelete}
-            onChange={onChange}
           />
         );
       })}

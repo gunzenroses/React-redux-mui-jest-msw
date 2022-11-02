@@ -16,14 +16,6 @@ exports[`App should match snapshot 1`] = `
       <div
         class="MuiFormControl-root MuiTextField-root css-w3s1g-MuiFormControl-root-MuiTextField-root"
       >
-        <label
-          class="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-colorPrimary MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root"
-          data-shrink="false"
-          for=":r0:"
-          id=":r0:-label"
-        >
-          What's need to be done?
-        </label>
         <div
           class="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root"
         >
@@ -31,6 +23,7 @@ exports[`App should match snapshot 1`] = `
             aria-invalid="false"
             class="MuiInputBase-input MuiOutlinedInput-input css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input"
             id=":r0:"
+            placeholder="What's need to be done?"
             type="text"
             value=""
           />
@@ -39,16 +32,19 @@ exports[`App should match snapshot 1`] = `
             class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
           >
             <legend
-              class="css-yjsfm1"
+              class="css-ihdtdm"
             >
-              <span>
-                What's need to be done?
+              <span
+                class="notranslate"
+              >
+                ​
               </span>
             </legend>
           </fieldset>
         </div>
       </div>
       <button
+        aria-label="addButton"
         class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium Mui-disabled MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-axubsc-MuiButtonBase-root-MuiButton-root"
         disabled=""
         tabindex="-1"
@@ -90,24 +86,23 @@ exports[`App should match snapshot 1`] = `
           />
         </svg>
         <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-multiline MuiInputBase-readOnly css-14sp07p-MuiInputBase-root-MuiInput-root"
+          aria-label="todoItem"
+          class="MuiFormControl-root MuiTextField-root css-zwh86o-MuiFormControl-root-MuiTextField-root"
         >
-          <textarea
-            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline MuiInputBase-readOnly css-66dh3a-MuiInputBase-input-MuiInput-input"
-            readonly=""
-            style="height: 0px; overflow: hidden;"
+          <div
+            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-1ptx2yq-MuiInputBase-root-MuiInput-root"
           >
-            test code
-          </textarea>
-          <textarea
-            aria-hidden="true"
-            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline MuiInputBase-readOnly css-66dh3a-MuiInputBase-input-MuiInput-input"
-            readonly=""
-            style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
-            tabindex="-1"
-          />
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+              id=":r1:"
+              type="text"
+              value="first text"
+            />
+          </div>
         </div>
         <button
+          aria-label="changeBtn"
           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-lwmgk2-MuiButtonBase-root-MuiIconButton-root"
           tabindex="0"
           type="button"
@@ -123,11 +118,9 @@ exports[`App should match snapshot 1`] = `
               d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
             />
           </svg>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
         </button>
         <button
+          aria-label="deleteBtn"
           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-13b8k9w-MuiButtonBase-root-MuiIconButton-root"
           tabindex="0"
           type="button"
@@ -143,9 +136,6 @@ exports[`App should match snapshot 1`] = `
               d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
             />
           </svg>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
         </button>
       </div>
       <div
@@ -163,24 +153,23 @@ exports[`App should match snapshot 1`] = `
           />
         </svg>
         <div
-          class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-multiline MuiInputBase-readOnly css-14sp07p-MuiInputBase-root-MuiInput-root"
+          aria-label="todoItem"
+          class="MuiFormControl-root MuiTextField-root css-zwh86o-MuiFormControl-root-MuiTextField-root"
         >
-          <textarea
-            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline MuiInputBase-readOnly css-66dh3a-MuiInputBase-input-MuiInput-input"
-            readonly=""
-            style="height: 0px; overflow: hidden;"
+          <div
+            class="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-colorPrimary MuiInputBase-formControl css-1ptx2yq-MuiInputBase-root-MuiInput-root"
           >
-            test code
-          </textarea>
-          <textarea
-            aria-hidden="true"
-            class="MuiInputBase-input MuiInput-input MuiInputBase-inputMultiline MuiInputBase-readOnly css-66dh3a-MuiInputBase-input-MuiInput-input"
-            readonly=""
-            style="visibility: hidden; position: absolute; overflow: hidden; height: 0px; top: 0px; left: 0px; transform: translateZ(0); padding: 0px; width: 100%;"
-            tabindex="-1"
-          />
+            <input
+              aria-invalid="false"
+              class="MuiInputBase-input MuiInput-input css-1x51dt5-MuiInputBase-input-MuiInput-input"
+              id=":r2:"
+              type="text"
+              value="second text"
+            />
+          </div>
         </div>
         <button
+          aria-label="changeBtn"
           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-lwmgk2-MuiButtonBase-root-MuiIconButton-root"
           tabindex="0"
           type="button"
@@ -196,11 +185,9 @@ exports[`App should match snapshot 1`] = `
               d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.9959.9959 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
             />
           </svg>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
         </button>
         <button
+          aria-label="deleteBtn"
           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-13b8k9w-MuiButtonBase-root-MuiIconButton-root"
           tabindex="0"
           type="button"
@@ -216,9 +203,6 @@ exports[`App should match snapshot 1`] = `
               d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
             />
           </svg>
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
         </button>
       </div>
     </div>
