@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent } from 'react';
+import { FC, useState, ChangeEvent, memo } from 'react';
 import { IconButton, Paper, TextField } from '@mui/material';
 import { RadioButtonUnchecked, TaskAlt, Delete, ModeEdit } from '@mui/icons-material';
 
@@ -11,7 +11,7 @@ type Props = {
   text: string
 }
 
-const TodoItem: FC<Props> = ({
+const TodoItem: FC<Props> = memo(({
   id,
   checked,
   text
@@ -46,11 +46,12 @@ const TodoItem: FC<Props> = ({
 
   const onCompleteHandler = () => {
     if (!ifReadOnly) return;
+    const ifChecked = !checked;
     const newData = {
       id,
-      checked: !checked,
+      checked: ifChecked,
       text,
-    }
+    };
     dispatch(changeTodo(newData));
   }
 
@@ -129,6 +130,6 @@ const TodoItem: FC<Props> = ({
       )}
     </Paper>
   );
-}
+})
 
 export { TodoItem };

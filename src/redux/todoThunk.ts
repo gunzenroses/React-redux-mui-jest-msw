@@ -18,7 +18,7 @@ const addTodo = createAsyncThunk(
   'todoSlice/addTodo',
   async (data: TodoItemType, { rejectWithValue }) => {
     try {
-      const list = new TodoData().addData(data);
+      const list = await new TodoData().addData(data);
       return list;
     } catch (error) {
       return rejectWithValue('Did not succeed to ass new item');
@@ -30,7 +30,7 @@ const changeTodo = createAsyncThunk(
   'todoSlice/changeTodo',
   async (data: TodoItemType, { rejectWithValue }) => {
     try {
-      const list = new TodoData().changeData(data);
+      const list = await new TodoData().changeData(data);
       return list;
     } catch (error) {
       return rejectWithValue('Can\'t change item');
@@ -42,7 +42,7 @@ const deleteTodo = createAsyncThunk(
   'todoSlice/deleteTodo',
   async (id: TodoItemType['id'][], { rejectWithValue }) => {
     try {
-      const list = new TodoData().deleteData(id);
+      const list = await new TodoData().deleteData(id);
       return list;
     } catch (error) {
       return rejectWithValue("Can't delete todo");

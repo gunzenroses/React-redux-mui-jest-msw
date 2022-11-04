@@ -1,22 +1,28 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Box } from "@mui/system";
 import { Button, Typography } from '@mui/material';
 
+import { useMode, useMyDispatch, useMyListLength } from '../redux/hooks';
+import { setMode } from '../redux/modeSlice';
 import { MyButton } from './MyButton';
 
 type Props = {
-  listLength: number;
-  currentMode: ModeType;
-  onModeChange: (mode: ModeType) => void;
   onDeleteCompleted: () => void;
 };
 
-const Footer: FC<Props> = ({
-  listLength,
-  currentMode,
-  onModeChange,
+const Footer: FC<Props> = memo(({
   onDeleteCompleted
 }) => {
+  const dispatch = useMyDispatch();
+
+  const currentMode = useMode();
+
+  const listLength = useMyListLength();
+
+  const onModeChange = (mode: ModeType) => {
+    dispatch(setMode(mode));
+  }
+
   const text = listLength === 1 ? 'item' : 'items';
   const modes: ModeType[] = ['All', 'Active', 'Completed'];
   return (
@@ -51,6 +57,6 @@ const Footer: FC<Props> = ({
       </Button>
     </Box>
   );
-};
+});
 
 export { Footer };

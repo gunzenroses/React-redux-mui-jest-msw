@@ -1,28 +1,38 @@
-import { FC } from 'react';
+import { FC, useEffect, useState, memo } from 'react';
 import { Box } from '@mui/material';
 
+import { useMode } from '../redux/hooks';
 import { TodoItem } from './TodoItem';
 
 type Props = {
-  todoList: TodoItemType[];
-  currentMode: ModeType;
+  data: TodoItemType[];
 };
 
-const TodoList: FC<Props> = ({
-  todoList,
-  currentMode
+const TodoList: FC<Props> = memo(({
+  data
 }) => {
-  const modifiedList = todoList.filter(todo => {
-    switch (currentMode) {
-      case 'All': return todo;
-      case 'Active': return !todo.checked;
-      case 'Completed': return todo.checked;
-    }
-  })
+  
+  const mode: ModeType = useMode();
+
+  const [modList, setModList] = useState(data);
+
+  useEffect(() => {
+    const modifiedList = data.filter((todo) => {
+      switch (mode as ModeType) {
+        case 'All':
+          return todo;
+        case 'Active':
+          return !todo.checked;
+        case 'Completed':
+          return todo.checked;
+      }
+    });
+    setModList(modifiedList);
+  }, [mode, data]);
 
   return (
     <Box display='flex' flexDirection='column' gap='20px'>
-      {modifiedList.map((item) => {
+      {modList.map((item) => {
         return (
           <TodoItem
             key={item.id}
@@ -34,6 +44,6 @@ const TodoList: FC<Props> = ({
       })}
     </Box>
   );
-};
+});
 
 export { TodoList };

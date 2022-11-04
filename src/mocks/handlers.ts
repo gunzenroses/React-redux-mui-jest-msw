@@ -1,24 +1,24 @@
 import { rest } from 'msw';
 import { initialState } from '../test-utils/preloadedState'
 
-export const handlers = [
+export const regularHandlers = [
   rest.get('http://localhost:3004/:listName', (req, res, ctx) => {
     const { listName } = req.params;
     if (listName === 'todoList') {
-      return res(ctx.status(200), ctx.json(initialState));
+      return res(ctx.status(200), ctx.json(initialState.todoList));
     }
     return res(ctx.status(404));
   }),
   rest.post('http://localhost:3004/todoList', (req, res, ctx) => {
     const newPost = req.json();
-    return res(ctx.status(200), ctx.json([...initialState, newPost]));
+    return res(ctx.status(200), ctx.json([...initialState.todoList, newPost]));
   }),
   rest.put('http://localhost:3004/todoList/:itemId', (req, res, ctx) => {
     const changedPost = req.json();
     const { itemId } = req.params;
     if (typeof itemId === 'string') {
       const id = parseInt(itemId);
-      const updatedState = initialState.map((item) => {
+      const updatedState = initialState.todoList.map((item) => {
         if (item.id === id) {
           return changedPost;
         }
@@ -32,11 +32,10 @@ export const handlers = [
     const { itemId } = req.params;
     if (typeof itemId === 'string') {
       const id = parseInt(itemId);
-      const updatedState = initialState.filter(item => {
+      const updatedState = initialState.todoList.filter((item) => {
         if (item.id !== id) return item;
-      })
+      });
       return res(ctx.status(200), ctx.json([...updatedState]));
     }
-  })  
+  }),
 ];
-

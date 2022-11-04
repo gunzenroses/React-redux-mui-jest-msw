@@ -1,4 +1,4 @@
-import { ChangeEvent, useState, FC } from 'react';
+import { ChangeEvent, useState, FC, memo } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import { Add } from '@mui/icons-material';
 
@@ -9,7 +9,7 @@ type Props = {
   lastDataId: number;
 }
 
-const Panel: FC<Props> = ({ lastDataId }) => {
+const Panel: FC<Props> = memo(({ lastDataId }) => {
   const dispatch = useMyDispatch();
 
   const [value, setValue] = useState('');
@@ -70,6 +70,6 @@ const Panel: FC<Props> = ({ lastDataId }) => {
       </Button>
     </Box>
   );
-};
+});
 
 export { Panel };

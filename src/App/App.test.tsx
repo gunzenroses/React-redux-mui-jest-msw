@@ -13,14 +13,16 @@ test('App should match snapshot', async () => {
 });
 
 describe('button Add new todo', () => {
-  test('works when smth typed it', async () => {
+  test('works when smth typed in', async () => {
     const newText = 'something new';
 
     renderWithProviders(<App />);
 
     await waitFor(() => screen.getAllByLabelText('todoItem'));
 
-    const inputTodo = screen.getByPlaceholderText("What's need to be done?") as HTMLInputElement;
+    const inputTodo = screen.getByPlaceholderText(
+      "What's need to be done?"
+    ) as HTMLInputElement;
     const addButton = screen.getByLabelText(/addButton/i);
     
     await waitFor(() => {
@@ -43,7 +45,9 @@ describe('Change todoItem',  () => {
   test('should work after pushing the change button', async () => {
     renderWithProviders(<App />);
     await waitFor(() => screen.getAllByLabelText('todoItem'));
-    const firstTodo = screen.getByDisplayValue(initialState[0].text) as HTMLInputElement;
+    const firstTodo = screen.getByDisplayValue(
+      initialState.todoList[0].text
+    ) as HTMLInputElement;
 
     const changeBtn = screen.getAllByLabelText('changeBtn')[0];
     await waitFor(() => {
@@ -61,7 +65,7 @@ describe('Change todoItem',  () => {
     await waitFor(() => screen.getAllByLabelText('todoItem'));
 
     const firstTodo = screen.getByDisplayValue(
-      initialState[0].text
+      initialState.todoList[0].text
     ) as HTMLInputElement;
     await waitFor(() => {
       fireEvent.change(firstTodo, { target: { value: newText } });
@@ -71,30 +75,34 @@ describe('Change todoItem',  () => {
   })
 })
 
-describe('Delete todoItem', () => {
-  test('should work', async () => {
-    const firstValue = initialState[0].text;
+describe('Mode buttons', () => {
+  test('should show only Completed item, when mode is relevant', async () => {
     renderWithProviders(<App />),
     await waitFor(() => { screen.getAllByLabelText('todoItem')});
-    const firstTodo = screen.getByDisplayValue(firstValue);
-    const deleteBtn = screen.getAllByLabelText('deleteBtn')[0];
-
-    expect(firstTodo).toBeInTheDocument();
+    const todoItems = screen.getAllByLabelText('todoItem').length;
+    const completedBtn = screen.getByTestId(/Completed/i);
 
     await waitFor(() => {
-      fireEvent.click(deleteBtn);
-    });
-    console.log('should be after 4');
+      fireEvent.click(completedBtn);
+    })
+    const todoItemsAfter = screen.getAllByLabelText('todoItem').length;
 
-    const newFirstTodo = screen
-      .getAllByLabelText('todoItem')[0]
-      .getElementsByTagName('input')[0].value;
-    console.log(newFirstTodo);
-
-    expect(firstTodo).not.toBeInTheDocument();
+    expect(todoItems).toBeGreaterThan(todoItemsAfter);
   });
-})
 
-describe('', () => {
+    test('should show only Active item, when mode is relevant', async () => {
+      renderWithProviders(<App />),
+        await waitFor(() => {
+          screen.getAllByLabelText('todoItem');
+        });
+      const todoItems = screen.getAllByLabelText('todoItem').length;
+      const activeBtn = screen.getByTestId(/Active/i);
 
+      await waitFor(() => {
+        fireEvent.click(activeBtn);
+      });
+      const todoItemsAfter = screen.getAllByLabelText('todoItem').length;
+
+      expect(todoItems).toBeGreaterThan(todoItemsAfter);
+    });
 })

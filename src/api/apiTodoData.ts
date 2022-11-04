@@ -28,11 +28,8 @@ class TodoData {
         Credentials: 'include',
       },
       body: JSON.stringify(data),
-    }).then(() => {
-      this.db.push(data);
-    }).then(() => {
-      return this.db;
-    })
+    });
+    return this.getData();
   }
 
   async changeData(data: TodoItemType) {
@@ -43,30 +40,19 @@ class TodoData {
         Credential: 'include',
       },
       body: JSON.stringify(data),
-    }).then(() => {
-      const newDb = this.db.filter((item) => {
-        return item.id === data.id ? data : item;
-      });
-      this.db = newDb;
-      return this.db;
-    })
+    });
+    return this.getData();
   }
 
-  async clearDataItem(id: TodoItemType['id']) {
-    console.log(4);
+  private async clearDataItem(id: TodoItemType['id']) {
     await fetch(`http://localhost:3004/todoList/${id}`, {
       method: 'DELETE',
     });
   }
 
   async deleteData(ids: TodoItemType['id'][]) {
-    console.log(3)
     await Promise.all(ids.map(id => this.clearDataItem(id)));
-    const newDb = this.db.filter((item) => {
-      return ids.indexOf(item.id) == -1;
-    });
-    this.db = newDb;
-    return this.db;
+    return this.getData();
   }
 }
 

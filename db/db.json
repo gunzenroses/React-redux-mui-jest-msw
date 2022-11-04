@@ -3,7 +3,12 @@
     {
       "id": 1,
       "checked": false,
-      "text": "new task"
+      "text": "something meaningful"
+    },
+    {
+      "id": 2,
+      "checked": false,
+      "text": "some text"
     }
   ]
 }

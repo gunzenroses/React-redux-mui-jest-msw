@@ -14,3 +14,10 @@ export const useMyList = () => {
   return useMySelector((state: MyState) => state.todoList);
 }
 
+export const useMyListLength = () => {
+  return useMySelector((state: MyState) => state.todoList.length);
+}
+
+export const useMode = () => {
+  return useMySelector((state: MyState) => state.mode);
+}
