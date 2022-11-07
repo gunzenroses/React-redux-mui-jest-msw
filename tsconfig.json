@@ -22,7 +22,7 @@
   },
   "include": [
     "src"
-  ],
+, "setupTests.ts"  ],
   "exclude": [
     "src/types"
   ],

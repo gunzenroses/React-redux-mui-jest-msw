@@ -15,7 +15,8 @@ const MyButton: FC<Props> = ({ children, matchCurrentMode, onClick }) => {
 
   return (
     <Button
-      variant={ matchCurrentMode ? 'contained' : 'outlined' }
+      data-testId={children}
+      variant={matchCurrentMode ? 'contained' : 'outlined'}
       sx={{
         color: '#0000008a',
       }}
