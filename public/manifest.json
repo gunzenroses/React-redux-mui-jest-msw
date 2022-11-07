@@ -1,5 +1,5 @@
 {
-  "name":"Todo Mindbox",
+  "name":"React-redux-mui-jest-msw",
   "short_name":"Todo",
   "icons":[
     {
@@ -11,8 +11,8 @@
       "sizes":"192x192",
       "type":"image/png"
     },{
-      "src":"/logo512.png",
-      "sizes":"512x512",
+      "src":"/logo256.png",
+      "sizes":"256x256",
       "type":"image/png"
     }],
   "theme_color":"#ffffff",
