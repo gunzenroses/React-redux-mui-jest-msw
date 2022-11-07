@@ -2,10 +2,10 @@
 
 ## Used technologies
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-For backend was used [json-server](https://www.npmjs.com/package/json-server).
-Tests are conducted with react-testing-library, msw (to mock rest api).
-As UIKit was used graphical library [mui](https://mui.com/)
+* This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* For backend was used [json-server](https://www.npmjs.com/package/json-server).
+* Tests are conducted with react-testing-library, msw (to mock rest api).
+* For UIKit was used graphical library [mui](https://mui.com/)
 
 ## How to
 
