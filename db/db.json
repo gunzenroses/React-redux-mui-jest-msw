@@ -1,14 +1,19 @@
 {
   "todoList": [
     {
-      "id": 1,
-      "checked": false,
-      "text": "something meaningful"
+      "id": 2,
+      "checked": true,
+      "text": "some text"
     },
     {
-      "id": 2,
+      "id": 3,
       "checked": false,
-      "text": "some text"
+      "text": "write good tests"
+    },
+    {
+      "id": 4,
+      "checked": false,
+      "text": "publish on github pages"
     }
   ]
 }
